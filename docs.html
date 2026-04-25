@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Masterclass | The Complete Pro Guide</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0070f3;
+            --primary-light: #e6f1ff;
+            --text: #171717;
+            --text-muted: #666;
+            --bg: #ffffff;
+            --sidebar-bg: #fafafa;
+            --card-bg: #ffffff;
+            --input-bg: #f8f9fa;
+            --border: #eaeaea;
+            --tip-bg: #fff9e6;
+            --tip-border: #ffecb3;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme='dark'] {
+            --primary: #3291ff;
+            --primary-light: #00254d;
+            --text: #ededed;
+            --text-muted: #a0a0a0;
+            --bg: #000;
+            --sidebar-bg: #111;
+            --card-bg: #111;
+            --input-bg: #1a1a1a;
+            --border: #333;
+            --tip-bg: #1a1600;
+            --tip-border: #332b00;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); 
+            line-height: 1.6; margin: 0; display: flex; 
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px; height: 100vh; position: sticky; top: 0;
+            background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            padding: 40px 24px; overflow-y: auto;
+        }
+        .sidebar h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin: 25px 0 12px 10px; }
+        .sidebar-link { 
+            display: block; text-decoration: none; color: var(--text); 
+            padding: 8px 12px; margin-bottom: 2px; border-radius: 8px; font-size: 0.9rem;
+        }
+        .sidebar-link:hover { background: var(--primary-light); color: var(--primary); }
+
+        /* Content */
+        .content { flex: 1; max-width: 1000px; padding: 60px 80px; margin: 0 auto; }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+        
+        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 10px; }
+        .lead { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 60px; }
+        
+        section { margin-bottom: 100px; }
+        h2 { font-size: 2.2rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 30px; }
+
+        /* Comparison Cards */
+        .comp-card { 
+            border: 1px solid var(--border); border-radius: 16px; 
+            overflow: hidden; background: var(--card-bg); box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        .comp-header { 
+            padding: 12px 20px; background: var(--sidebar-bg); 
+            border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;
+        }
+        .comp-label { font-size: 0.7rem; font-weight: 700; color: #888; text-transform: uppercase; }
+        .comp-body { display: grid; grid-template-columns: 1fr 1fr; }
+        
+        .pane { padding: 24px; }
+        .pane-input { background: var(--input-bg); border-right: 1px solid var(--border); }
+        .pane-preview { background: var(--card-bg); }
+
+        pre { margin: 0; font-family: 'Fira Code', monospace; font-size: 0.9rem; white-space: pre-wrap; color: var(--text); }
+        .preview-content { font-size: 1rem; }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--tip-bg); border: 1px solid var(--tip-border);
+            padding: 15px 20px; border-radius: 10px; margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        .info-box strong { color: #856404; display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; }
+        [data-theme='dark'] .info-box strong { color: #ffecb3; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        table th, table td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+        table th { background: var(--sidebar-bg); }
+        blockquote { border-left: 4px solid var(--primary); padding-left: 15px; color: var(--text-muted); margin: 0; }
+        hr { border: 0; border-top: 1px solid var(--border); margin: 20px 0; }
+
+        kbd {
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 2px 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        [data-theme='dark'] kbd {
+            background: #333;
+            border-color: #555;
+            color: #eee;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .comp-body { grid-template-columns: 1fr; }
+            .pane-input { border-right: none; border-bottom: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <h3>Fundamentals</h3>
+        <a href="#headings" class="sidebar-link">Headings</a>
+        <a href="#emphasis" class="sidebar-link">Emphasis</a>
+        <a href="#lists" class="sidebar-link">Lists</a>
+        <a href="#links" class="sidebar-link">Links & References</a>
+        <a href="#images" class="sidebar-link">Images</a>
+        <h3>Structure</h3>
+        <a href="#blockquotes" class="sidebar-link">Blockquotes</a>
+        <a href="#code" class="sidebar-link">Code & Syntax</a>
+        <a href="#tables" class="sidebar-link">Tables</a>
+        <a href="#hr" class="sidebar-link">Horizontal Rules</a>
+        <h3>Advanced</h3>
+        <a href="#tasks" class="sidebar-link">Task Lists</a>
+        <a href="#footnotes" class="sidebar-link">Footnotes</a>
+        <a href="#html" class="sidebar-link">Inline HTML</a>
+        <a href="#escaping" class="sidebar-link">Escaping</a>
+    </nav>
+
+    <main class="content">
+        <header class="nav-header">
+            <a href="index.html" style="text-decoration: none; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Editor
+            </a>
+            <button id="theme-toggle" style="background: none; border: 1px solid var(--border); padding: 8px; border-radius: 8px; cursor: pointer; color: var(--text); display: flex; align-items: center; justify-content: center; transition: 0.2s;">
+                <svg id="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sun-icon" style="display: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </header>
+
+        <h1>Markdown Masterclass</h1>
+        <p class="lead">A professional guide to every single Markdown feature, optimized for SEO and readability.</p>
+
+        <!-- FUNDAMENTALS -->
+        <section id="headings">
+            <h2>Headings</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use headings to build a document outline. SEO crawlers use these to understand your content hierarchy.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre># H1 Heading
+## H2 Heading
+### H3 Heading</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <h1 style="margin:0; font-size:1.5rem">H1 Heading</h1>
+                        <h2 style="font-size:1.2rem">H2 Heading</h2>
+                        <h3 style="font-size:1rem">H3 Heading</h3>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="emphasis">
+            <h2>Emphasis</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use bold for primary keywords and italics for technical terms or cited titles.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>**Bold Text**
+*Italic Text*
+~~Strikethrough~~</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p><strong>Bold Text</strong><br><em>Italic Text</em><br><del>Strikethrough</del></p>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lists">
+            <h2>Lists</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: You can nest lists by adding four spaces or a tab before the sub-item.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>1. Item One
+2. Item Two
+   - Sub-item
+- Bullet point</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <ol style="margin:0"><li>Item One</li><li>Item Two<ul style="margin:0"><li>Sub-item</li></ul></li></ol>
+                        <ul style="margin:0"><li>Bullet point</li></ul>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>Links & References</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Reference-style links keep your content clean by moving URLs to the bottom of the file.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>[Google](https://google.com)
+[My Link][1]
+
+[1]: https://example.com</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p><a href="#" style="color:var(--primary)">Google</a><br>
+                        <a href="#" style="color:var(--primary)">My Link</a></p>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="images">
+            <h2>Images</h2>
+            <div class="info-box"><strong>Common Pitfall</strong>: Always include alt-text inside the brackets for accessibility and better SEO.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>![Logo Icon](/favicon.svg)</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <img src="/favicon.svg" alt="Logo Icon" width="40">
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUCTURE -->
+        <section id="blockquotes">
+            <h2>Blockquotes</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: You can nest blockquotes by using `>>`.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>> Think different.
+> -- Steve Jobs</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <blockquote>Think different.<br>-- Steve Jobs</blockquote>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="code">
+            <h2>Code & Syntax</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use the "fenced" style (triple backticks) and name the language for better highlighting.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>`inline code`
+
+```javascript
+const x = 10;
+```</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p><code>inline code</code></p>
+                        <pre style="background:var(--input-bg); padding:10px; border-radius:8px">const x = 10;</pre>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tables">
+            <h2>Tables</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use colons in the separator row to align text: `:---` (left), `:---:` (center), `---:` (right).</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>| Feature | Status |
+| :--- | :---: |
+| Speed | Fast |</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <table><thead><tr><th>Feature</th><th style="text-align:center">Status</th></tr></thead><tbody><tr><td>Speed</td><td style="text-align:center">Fast</td></tr></tbody></table>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hr">
+            <h2>Horizontal Rules</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use these to separate major sections within a single page.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>---</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <hr>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANCED -->
+        <section id="tasks">
+            <h2>Task Lists</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use these for project checklists. They render as interactive checkboxes in most modern viewers.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>- [x] Task Done
+- [ ] Task Pending</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <div><input type="checkbox" checked disabled> Task Done</div>
+                        <div><input type="checkbox" disabled> Task Pending</div>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="footnotes">
+            <h2>Footnotes</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Footnotes automatically generate links that jump between the text and the note at the bottom.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>Read this[^1].
+[^1]: Detailed note.</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p>Read this<sup>[1]</sup></p>
+                        <p style="font-size:0.8rem; border-top:1px solid var(--border); padding-top:10px">1. Detailed note.</p>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="html">
+            <h2>Inline HTML</h2>
+            <div class="info-box"><strong>Pro Tip</strong>: Use HTML for elements that Markdown doesn't support, like underlining or keyboard keys.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre><u>Underline</u>
+<kbd>Ctrl</kbd> + <kbd>C</kbd></pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p><u>Underline</u><br><kbd>Ctrl</kbd> + <kbd>C</kbd></p>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="escaping">
+            <h2>Escaping</h2>
+            <div class="info-box"><strong>Common Pitfall</strong>: Use a backslash (\) to display characters that are usually reserved for formatting.</div>
+            <div class="comp-card">
+                <div class="comp-header"><span class="comp-label">Input</span></div>
+                <div class="comp-body">
+                    <div class="pane pane-input"><pre>\*Not italic\*</pre></div>
+                    <div class="pane pane-preview"><div class="preview-content">
+                        <p>*Not italic*</p>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT INFO -->
+        <section id="privacy">
+            <h2>Privacy & Open Source</h2>
+            <div class="info-box">
+                <strong>Privacy Commitment</strong>
+                <p>Markdown Pro Editor is a client-side application. We do not collect, store, or transmit any of your personal details or the content you write. Your data stays entirely within your own browser's local storage.</p>
+            </div>
+            <div class="info-box" style="background: var(--primary-light); border-color: var(--primary);">
+                <strong style="color: var(--primary);">Open Source</strong>
+                <p>This project is fully open-source and community-driven. You can find the source code, contribute, or report issues on our GitHub repository: <br>
+                <a href="https://github.com/Bogglo/markdown-pro" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none;">github.com/Bogglo/markdown-pro</a></p>
+            </div>
+        </section>
+
+        <footer style="margin-top: 100px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 Markdown Pro Masterclass Guide. All sections included. <br>
+            Contact: <a href="mailto:AllBayejidBishwash@protonmail.com" style="color: var(--primary); text-decoration: none;">AllBayejidBishwash@protonmail.com</a>
+        </footer>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('md-pro-theme', theme);
+            if (theme === 'dark') {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+        }
+
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem('md-pro-theme') || 'light';
+        setTheme(savedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+    </script>
+</body>
+</html>
