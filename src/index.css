@@ -148,10 +148,10 @@ textarea {
 
 /* Prism Accessibility Overrides (Fixing Contrast Issues) */
 /* Light Mode (White) - Deep, readable colors */
-.token.function, .token.attr-name { color: #005cc5 !important; font-weight: 600; } /* Dark Blue */
+.token.function, .token.attr-name { color: #005cc5 !important; font-weight: 600; } /* Dark Blue for 'log' */
 .token.string, .token.char, .token.attr-value { color: #22863a !important; } /* Dark Green */
 .token.keyword, .token.boolean, .token.number { color: #d73a49 !important; } /* Maroon/Red */
-.token.builtin, .token.constant, .token.class-name { color: #032f62 !important; font-weight: 800; } /* Extra Bold Deep Navy for 'console' */
+.token.builtin, .token.constant, .token.class-name { color: #e36209 !important; font-weight: 800; } /* Bold Dark Orange/Rust for 'console' */
 .token.property { color: #6f42c1 !important; font-weight: 600; } /* Purple for properties */
 .token.punctuation { color: #24292e !important; font-weight: bold; } /* Sharp black for dots and brackets */
 .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6a737d !important; } /* Darker Grey */
