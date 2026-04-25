@@ -147,11 +147,13 @@ textarea {
 .preview-content code { background: var(--secondary-bg); padding: 3px 6px; border-radius: 6px; font-size: 0.9em; font-family: 'Fira Code', monospace; border: 1px solid var(--border-color); }
 
 /* Prism Accessibility Overrides (Fixing Contrast Issues) */
-.token.function, .token.attr-name { color: #f08d49 !important; } /* High contrast orange */
-.token.string, .token.char, .token.attr-value { color: #7ec699 !important; } /* High contrast green */
-.token.keyword, .token.boolean, .token.number { color: #cc99cd !important; } /* Light purple */
-.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #999 !important; }
+/* Light Mode (White) - Deep, readable colors */
+.token.function, .token.attr-name { color: #005cc5 !important; font-weight: 600; } /* Dark Blue */
+.token.string, .token.char, .token.attr-value { color: #22863a !important; } /* Dark Green */
+.token.keyword, .token.boolean, .token.number { color: #d73a49 !important; } /* Maroon/Red */
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6a737d !important; } /* Darker Grey */
 
-[data-theme='dark'] .token.function { color: #61afef !important; } /* Bright blue for dark mode */
-[data-theme='dark'] .token.string { color: #98c379 !important; } /* Bright green for dark mode */
-[data-theme='dark'] .token.keyword { color: #c678dd !important; } /* Bright purple */
+/* Dark Mode Overrides - Bright, ujjol colors */
+[data-theme='dark'] .token.function { color: #61afef !important; } 
+[data-theme='dark'] .token.string { color: #98c379 !important; } 
+[data-theme='dark'] .token.keyword { color: #c678dd !important; }
