@@ -145,3 +145,13 @@ textarea {
 .preview-content blockquote { border-left: 4px solid var(--primary-color); padding: 8px 24px; margin: 24px 0; background: var(--secondary-bg); border-radius: 0 8px 8px 0; }
 .preview-content pre { background: var(--secondary-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); overflow-x: auto; }
 .preview-content code { background: var(--secondary-bg); padding: 3px 6px; border-radius: 6px; font-size: 0.9em; font-family: 'Fira Code', monospace; border: 1px solid var(--border-color); }
+
+/* Prism Accessibility Overrides (Fixing Contrast Issues) */
+.token.function, .token.attr-name { color: #f08d49 !important; } /* High contrast orange */
+.token.string, .token.char, .token.attr-value { color: #7ec699 !important; } /* High contrast green */
+.token.keyword, .token.boolean, .token.number { color: #cc99cd !important; } /* Light purple */
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: #999 !important; }
+
+[data-theme='dark'] .token.function { color: #61afef !important; } /* Bright blue for dark mode */
+[data-theme='dark'] .token.string { color: #98c379 !important; } /* Bright green for dark mode */
+[data-theme='dark'] .token.keyword { color: #c678dd !important; } /* Bright purple */
