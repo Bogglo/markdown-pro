@@ -151,11 +151,13 @@ textarea {
 .token.function, .token.attr-name { color: #005cc5 !important; font-weight: 600; } /* Dark Blue */
 .token.string, .token.char, .token.attr-value { color: #22863a !important; } /* Dark Green */
 .token.keyword, .token.boolean, .token.number { color: #d73a49 !important; } /* Maroon/Red */
-.token.constant, .token.class-name, .token.builtin { color: #6f42c1 !important; font-weight: 600; } /* Deep Purple for 'console' */
+.token.constant, .token.class-name, .token.builtin, .token.property { color: #6f42c1 !important; font-weight: 600; } /* Deep Purple for 'console' */
+.token.punctuation { color: #24292e !important; font-weight: bold; } /* Sharp black for dots and brackets */
 .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #6a737d !important; } /* Darker Grey */
 
 /* Dark Mode Overrides - Bright, ujjol colors */
 [data-theme='dark'] .token.function { color: #61afef !important; } 
 [data-theme='dark'] .token.string { color: #98c379 !important; } 
 [data-theme='dark'] .token.keyword { color: #c678dd !important; }
-[data-theme='dark'] .token.constant, [data-theme='dark'] .token.class-name, [data-theme='dark'] .token.builtin { color: #e5c07b !important; } /* Gold/Yellow for dark mode */
+[data-theme='dark'] .token.constant, [data-theme='dark'] .token.class-name, [data-theme='dark'] .token.builtin, [data-theme='dark'] .token.property { color: #e5c07b !important; } 
+[data-theme='dark'] .token.punctuation { color: #abb2bf !important; }
