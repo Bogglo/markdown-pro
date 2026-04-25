@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useMarkdown } from './hooks/useMarkdown';
 import Prism from 'prismjs';
 
