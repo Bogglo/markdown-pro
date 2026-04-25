@@ -8,7 +8,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
